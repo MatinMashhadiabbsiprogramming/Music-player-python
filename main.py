@@ -1,3 +1,11 @@
+#using library
+'''
+pygame
+tkinter
+time
+daetmime 
+'''
+# Importing all the necessary modules
 from time import strftime
 from  tkinter import *
 from tkinter import filedialog
@@ -9,8 +17,12 @@ from pygame import mixer
 page=Tk()
 page.title("Alarm-Clock")
 
+# Initializing the mixer
+
 mixer.init()
 
+
+#add music
 def AddMusic():
     path=filedialog.askdirectory()
     if path:
@@ -20,7 +32,7 @@ def AddMusic():
         for song in songs:
             if song.endswith(".mp3"):
                 Playlist.insert(END,song)
-
+#play music
 def PlayMusic():
     MusicName=Playlist.get(ACTIVE)
     print(MusicName[0:-4])
@@ -30,13 +42,13 @@ def PlayMusic():
 
 
 
-
+#set alarm time
 def setalarm():
     alarmtime=f"{hrs.get()}:{mins.get()}:{secs.get()}"
     print(alarmtime)
     if(alarmtime!="::"):
         alarmclock(alarmtime)
-
+#py
 def alarmclock(alarmtime):
     while True:
         time.sleep(1)
@@ -54,11 +66,13 @@ hrs=StringVar()
 mins=StringVar()
 secs=StringVar()
 
+
 Frame_Music=Frame(page,bd=2,relief=RIDGE)
 Frame_Music.grid(row=6,columnspan=3)
 
 Button(page,text="Add Music",command=AddMusic,bg="DodgerBlue2",
 fg="white",font=('arial',20,"bold")).grid(row=5,columnspan=3)
+#list box music 
 Scroll=Scrollbar(Frame_Music)
 Playlist=Listbox(Frame_Music,width=15,height=2,yscrollcommand=Scroll.set)
 Scroll.config(command=Playlist.yview)
